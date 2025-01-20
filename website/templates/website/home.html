@@ -1,294 +1,266 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <title>Company Website</title>
-  </head>
-  <body>
-      <div mt-3 mb-3 mr-2 ml-2>
-    <!-- Nav Bar -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a1a2e;
+            color: #ffffff;
+        }
+
+        .services-section {
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 60px 0;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #16213e, #0f3460);
+            border: none;
+            border-radius: 0px;
+            text-align: left;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .card h5 {
+            color:rgb(245, 238, 239);
+            font-size:30px;
+
+        }
+
+        .card p {
+            color:rgb(168, 145, 145);
+           
+        }
+
+        .card .icon {
+            font-size: 3rem;
+            color: #a4b0be;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .card .icon:hover {
+            transform: scale(1.1);
+            color: #ffffff;
+        }
+
+        .card a {
+            text-decoration: none;
+            color:rgb(236, 226, 227);
+            font-weight: bold;
+            border: 2px solidrgb(241, 229, 231);
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .card a:hover {
+            background-color:rgb(232, 223, 224);
+            color: #1a1a2e;
+        }
+
+        footer {
+            background-color: #0f3460;
+        }
+
+        footer ul li {
+            margin-bottom: 10px;
+        }
+
+        footer ul li a {
+            color: #a4b0be;
+            text-decoration: none;
+        }
+
+        footer ul li a:hover {
+            color: #e94560;
+        }
+
+        footer i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light m-0 py-0">
         <a class="navbar-brand" href="#">Logo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <div class="ms-auto fs-4">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Services</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#">Projects</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#">Contact Us</a>
-              </li>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto fs-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
             </ul>
-
-          </div>
-
         </div>
-      </nav>
+    </nav>
 
-      <!-- Hero Section -->
-      <div class="container-fluid ml-5 mb-2">
+    <!-- Hero Section -->
+    <div class="container-fluid my-4">
         <div class="row flex-lg-row-reverse align-items-center">
-          <div class="col-12 col-sm-8 col-lg-8">
-            <img src={{hero_image_path}} class="d-block mx-lg-auto img-responsive" alt="" width="1000" height="800" loading="lazy" />
-          </div>
-          <div class="col-lg-4 align-items-center">
-            <h1 class="display-5 fw-bold lh-1 mb-3">Transform Your Space with Ideal Interiors</h1>
-            <p class="lead">At Ideal Interiors, we bring your vision to life with our expert design services. Whether it's a cozy home or a dynamic commercial space, our team is dedicated to creating stunning interiors that reflect your style.</p>
-    
-          </div>
+            <div class="col-12 col-sm-8 col-lg-8">
+                <img src={{hero_image_path}} class="d-block mx-lg-auto img-responsive" alt="Hero Image" width="1000" height="800" loading="lazy">
+            </div>
+            <div class="col-lg-4">
+                <h1 class="display-5 fw-bold lh-1 mb-3">Transform Your Space with Ideal Interiors</h1>
+                <p class="lead">At Ideal Interiors, we bring your vision to life with our expert design services. Whether it's a cozy home or a dynamic commercial space, our team is dedicated to creating stunning interiors that reflect your style.</p>
+            </div>
         </div>
-      </div>
     </div>
 
-
-
-    
-    <!-- Our-Services -->
-    <!-- Service 7 - Bootstrap Brain Component -->
-    <<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Website Layout</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: #121212;
-                color: #ffffff;
-            }
-    
-            .container {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 20px;
-                padding: 40px;
-                background-image: url('background.jpg'); /* Replace 'background.jpg' with your image path */
-                background-size: cover;
-                background-position: center;
-            }
-    
-            .card {
-                background-color: rgba(30, 30, 30, 0.8);
-                padding: 20px;
-                border-radius: 10px;
-                text-align: center;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            }
-    
-            .card h2 {
-                font-size: 1.5rem;
-                margin-bottom: 10px;
-                color: #f5c518;
-            }
-    
-            .card p {
-                font-size: 1rem;
-                line-height: 1.5;
-                margin-bottom: 20px;
-            }
-    
-            .card a {
-                text-decoration: none;
-                color: #f5c518;
-                font-weight: bold;
-            }
-    
-            .icon {
-                font-size: 2rem;
-                margin-bottom: 15px;
-                color: #f5c518;
-            }
-        </style>
-    </head>
-    <body>
+    <!-- Services Section -->
+    <section class="services-section">
         <div class="container">
-            <div class="card">
-                <div class="icon">🏠</div>
-                <h2>Architecture</h2>
-                <p>Designing enduring, innovative spaces that harmonize function and aesthetics with a focus on sustainability and client collaboration.</p>
-                <a href="#">Read More</a>
-            </div>
-    
-            <div class="card">
-                <div class="icon">🛋️</div>
-                <h2>Interior Design</h2>
-                <p>Crafting captivating interiors that blend beauty and functionality, tailored to individual styles for spaces that evoke comfort and elegance.</p>
-                <a href="#">Read More</a>
-            </div>
-    
-            <div class="card">
-                <div class="icon">🛠️</div>
-                <h2>Construction and Supervision</h2>
-                <p>Elevating spaces with curated or custom-designed furniture and decor elements, transforming environments into harmonious and captivating settings.</p>
-                <a href="#">Read More</a>
-            </div>
-    
-            <div class="card">
-                <div class="icon">🪑</div>
-                <h2>Furniture and Decor</h2>
-                <p>Elevate spaces with personalized touches. Our services offer curated selections or custom-designed furniture and decor, enhancing ambiance and functionality.</p>
-                <a href="#">Read More</a>
-            </div>
-        </div>
-    </body>
-    </html>
-    
-
-     
-      
-  
-
-    <!-- Project List -->
-    <section class="py-5 bg-light" id="projects">
-        <div class="container">
-            <h2 class="text-center mb-4">Our Projects</h2>
-            <p class="text-center mb-5">
-            Explore some of the stunning projects we've completed for our clients.
+          <h1 class='text-center mb-4'>Our Services</h1>
+          <p class="text-center mb-5">
+            Transforming spaces into timeless reflections of your style with innovative, functional, and elegant interior design solutions.
             </p>
             <div class="row g-4">
-            
-            
-            <!-- Card -->
-            {% for project in projects %}
-            <div class="col-md-4" key={project.id}>
-                <div class="card h-100 shadow-sm">
-                  <img
-                    src={{project.image}}
-                    class="image-wrapper"
-                    alt={project.title}
-                  />
-                  <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">{{ project.title }}</h5>
-                    <p class="card-text flex-grow-1">{{project.description}}</p>
-                    <div class="mt-auto">
-                      <a href="#">View Details</a>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 p-4">
+                        <div class="icon"><i class="fas fa-drafting-compass"></i></div>
+                        <h5>Architecture</h5>
+                        <p>Designing enduring, innovative spaces that harmonize function and aesthetics with a focus on sustainability and client collaboration.</p>
+                        
                     </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 p-4">
+                        <div class="icon"><i class="fas fa-couch"></i></div>
+                        <h5>Interior Design</h5>
+                        <p>Crafting captivating interiors that blend beauty and functionality, tailored to individual styles for spaces that evoke comfort and elegance.</p>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 p-4">
+                        <div class="icon"><i class="fas fa-hard-hat"></i></div>
+                        <h5>Construction & Supervision</h5>
+                        <p>Elevating spaces with curated or custom-designed furniture and decor elements, transforming environments into harmonious and captivating settings.</p>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 p-4">
+                        <div class="icon"><i class="fas fa-chair"></i></div>
+                        <h5>Furniture & Decor</h5>
+                        <p>Elevate spaces with personalized touches. Our services offer curated selections or custom-designed furniture and decor, enhancing ambiance and functionality.</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project List -->
+    <section id="projects">
+      <div class="container">
+          <h2 class="text-center mb-4">Our Projects</h2>
+          <p class="text-center mb-5">
+          Explore some of the stunning projects we've completed for our clients.
+          </p>
+          <div class="row g-4">
+          
+          
+          <!-- Card -->
+          {% for project in projects %}
+          <div class="col-md-4" key={project.id}>
+              <div class="card h-100 shadow-sm">
+                <img
+                  src={{project.image}}
+                  class="image-wrapper"
+                  alt={project.title}
+                />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">{{ project.title }}</h5>
+                  <p class="card-text flex-grow-1">{{project.description}}</p>
+                  <div class="mt-auto">
+                    <a href="#">View Details</a>
                   </div>
                 </div>
-            </div>
-            {% endfor %}
-            <!-- Card -->
-            </div>
-        </div>
-        
-
-
-</section>
+              </div>
+          </div>
+          {% endfor %}
+          <!-- Card -->
+          </div>
+      </div>
+      </section>
 
     <!-- Footer -->
-    <footer class="bg-body-tertiary text-left mt-4 bg-dark">
-
-        <div class="container p-4 text-light">
-            <section class="mb-4">
-            
-            
-            <section class="mb-4">
-           
-            </section>
-
-            <section class="">
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-capitalized">Logo</h5>
-
-                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Logo</h5>
                 </div>
-
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-capitalized ">Additional Links</h5>
-
-                <ul class="list-unstyled mb-0">
-                    <li>
-                    <a class="text-light text-decoration-none" href="#!">Blog</a>
-                    </li>
-                    <li>
-                    <a class="text-light text-decoration-none" href="#!">Our Services</a>
-                    </li>
-                    <li>
-                    <a class="text-light text-decoration-none" href="#!">Privacy Policy</a>
-                    </li>
-                    <li>
-                    <a class="text-light text-decoration-none" href="#!">Terms and Conditions</a>
-                    </li>
-                    <li>
-                    <a class="text-light text-decoration-none" href="#!">Interior Designing and Planning</a>
-                    </li>
-                </ul>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Additional Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Our Services</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms and Conditions</a></li>
+                        <li><a href="#">Interior Designing and Planning</a></li>
+                    </ul>
                 </div>
-
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-capitalized">Contact Information</h5>
-
-                <ul class="list-unstyled mb-0">
-                  
-                    <li>
-                    <i class="fa fa-location-arrow" aria-hidden="true"></i>
-                    <a class="text-light text-decoration-none" href="#!">Location</a>
-                    </li>
-                    <li>
-                    <i class="fa fa-phone" aria-hidden="true"></i>
-                    <a class="text-light text-decoration-none" href="#!">Phone</a>
-                    </li>
-                    <li>
-                    <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
-                    <a class="text-light text-decoration-none" href="#!">Telephone</a>
-                    </li>
-                    <li>
-                      <i class="fa fa-envelope" aria-hidden="true"></i>
-                    <a class="text-light text-decoration-none" href="#!">gmail</a>
-                    </li>
-                </ul>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Contact Information</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-location-arrow"></i> Location</li>
+                        <li><i class="fa fa-phone"></i> Phone</li>
+                        <li><i class="fa fa-volume-control-phone"></i> Telephone</li>
+                        <li><i class="fa fa-envelope"></i> Email</li>
+                    </ul>
                 </div>
-
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-capitalized">Connect With Us</h5>
-
-                <ul class="list-unstyled mb-0">
-                  <!-- Facebook -->
-                  <i class="fab fa-facebook-f"></i>
-                  <!-- Instagram -->
-                  <i class="fab fa-instagram"></i>
-                  <!-- Youtube -->
-                  <i class="fab fa-youtube"></i>
-                  <!-- Whatsapp -->
-                  <i class="fab fa-whatsapp"></i>
-                    
-                </ul>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Connect With Us</h5>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><i class="fab fa-facebook-f"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-instagram"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-youtube"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-whatsapp"></i></li>
+                    </ul>
                 </div>
             </div>
-            </section>
         </div>
+    </footer>
 
-        </footer>
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-  </body>
 </html>
