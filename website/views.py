@@ -8,19 +8,61 @@ SAMPLE_PROJECTS =  [
             "id": "project_1",
             "title": "Modern Living Room",
             "description": "A sleek and modern living room design with a focus on minimalism.",
-            "image": "static/images/design-1.png"
+            "image": "https://ideal-interior-nepal.s3.ap-south-1.amazonaws.com/sample-project/WhatsApp+Image+2025-01-20+at+7.16.18+PM.jpeg"
         },
         {
             "id": "project_2",
             "title": "Elegant Office Space",
             "description": "An office space that combines functionality with elegance.",
-            "image": "static/images/design-3.jpg"
+            "image": "https://ideal-interior-nepal.s3.ap-south-1.amazonaws.com/sample-project/WhatsApp+Image+2025-01-20+at+7.29.16+PM+(2).jpeg"
         },
         {
             "id": "project_3",
             "title": "Cozy Bedroom Design",
             "description": "A warm and inviting bedroom for ultimate relaxation.",
-            "image": "static/images/design-4.jpg"
+            "image": "https://ideal-interior-nepal.s3.ap-south-1.amazonaws.com/sample-project/WhatsApp+Image+2025-01-20+at+7.33.16+PM+(1).jpeg"
+        },
+         {
+            "id": "project_4",
+            "title": "Cozy Bedroom Design",
+            "description": "A warm and inviting bedroom for ultimate relaxation.",
+            "image": "https://ideal-interior-nepal.s3.ap-south-1.amazonaws.com/sample-project/WhatsApp+Image+2025-01-20+at+7.33.16+PM+(1).jpeg"
+        },
+        {
+            "id": "project_5",
+            "title": "Elegant Office Space",
+            "description": "An office space that combines functionality with elegance.",
+            "image": "https://ideal-interior-nepal.s3.ap-south-1.amazonaws.com/sample-project/WhatsApp+Image+2025-01-20+at+7.29.16+PM+(2).jpeg"
+        },
+        {
+            "id": "project_6",
+            "title": "Cozy Bedroom Design",
+            "description": "A warm and inviting bedroom for ultimate relaxation.",
+            "image": "https://ideal-interior-nepal.s3.ap-south-1.amazonaws.com/sample-project/WhatsApp+Image+2025-01-20+at+7.33.16+PM+(1).jpeg"
+        },
+         {
+            "id": "project_7",
+            "title": "Cozy Bedroom Design",
+            "description": "A warm and inviting bedroom for ultimate relaxation.",
+            "image": "https://ideal-interior-nepal.s3.ap-south-1.amazonaws.com/sample-project/WhatsApp+Image+2025-01-20+at+7.33.16+PM+(1).jpeg"
+        },
+         {
+            "id": "project_8",
+            "title": "Cozy Bedroom Design",
+            "description": "A warm and inviting bedroom for ultimate relaxation.",
+            "image": "https://ideal-interior-nepal.s3.ap-south-1.amazonaws.com/sample-project/WhatsApp+Image+2025-01-20+at+7.33.16+PM+(1).jpeg"
+        },
+         {
+            "id": "project_9",
+            "title": "Cozy Bedroom Design",
+            "description": "A warm and inviting bedroom for ultimate relaxation.",
+            "image": "https://ideal-interior-nepal.s3.ap-south-1.amazonaws.com/sample-project/WhatsApp+Image+2025-01-20+at+7.33.16+PM+(1).jpeg"
+        },
+        {
+            "id": "project_10",
+            "title": "Elegant Office Space",
+            "description": "An office space that combines functionality with elegance.",
+            "image": "https://ideal-interior-nepal.s3.ap-south-1.amazonaws.com/sample-project/WhatsApp+Image+2025-01-20+at+7.29.16+PM+(2).jpeg"
         }
     ]
 
