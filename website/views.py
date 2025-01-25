@@ -26,3 +26,6 @@ hero_image_path = "static/images/design-1.png"
 # Create your views here.
 def home(request):
     return render(request, "website/home.html", context={"projects": SAMPLE_PROJECTS, "hero_image_path": hero_image_path}) 
+
+def contact(request):
+    return render(request,'website/contact.html')
