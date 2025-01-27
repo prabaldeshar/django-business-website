@@ -25,12 +25,19 @@ class Project(BaseModel):
     description = models.TextField(blank=True, null=True)
     client_name = models.CharField(max_length=100, blank=True, null=True)
     location = models.CharField(max_length=100, blank=True, null=True)
-    cover_image = models.FileField(null=True, blank=True, upload_to='projects/images/', validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['jpeg', 'jpg', 'png', 'pdf'])])
+    cover_image = models.FileField(null=True, blank=True, upload_to='projects/images/', validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['jpeg', 'jpg', 'png'])])
     project_type = models.CharField(max_length=20, choices=project_type_choices, default=PROJECT_TYPE_COMMERCIAL)
     completed_date = models.DateField(default=date.today, null=True, blank=True)
+
+    @classmethod
+    def get_project_by_id(cls, project_id):
+        try: 
+            return Project.objects.get(id=project_id)
+        except Project.DoesNotExist:
+            return None
 
 
 class ProjectImage(BaseModel):
     project = models.ForeignKey(Project, on_delete=models.DO_NOTHING)
-    image = models.FileField(null=True, blank=True, upload_to='projects/images/', validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['jpeg', 'jpg', 'png', 'pdf'])])
+    image = models.FileField(null=True, blank=True, upload_to='projects/images/', validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['jpeg', 'jpg', 'png'])])
     description = models.TextField(null=True, blank=True)
