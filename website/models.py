@@ -28,3 +28,9 @@ class Project(BaseModel):
     cover_image = models.FileField(null=True, blank=True, upload_to='projects/images/', validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['jpeg', 'jpg', 'png', 'pdf'])])
     project_type = models.CharField(max_length=20, choices=project_type_choices, default=PROJECT_TYPE_COMMERCIAL)
     completed_date = models.DateField(default=date.today, null=True, blank=True)
+
+
+class ProjectImage(BaseModel):
+    project = models.ForeignKey(Project, on_delete=models.DO_NOTHING)
+    image = models.FileField(null=True, blank=True, upload_to='projects/images/', validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['jpeg', 'jpg', 'png', 'pdf'])])
+    description = models.TextField(null=True, blank=True)
