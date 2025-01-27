@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -155,3 +156,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+#jazzmine settings
+JAZZMIN_SETTINGS = {
+    "site_title": "Ideal Interior Admin",
+    "site_brand": "Ideal Interior",
+    # "site_logo": "https://ideal-interior-nepal.s3.ap-south-1.amazonaws.com/logos/ideal-logo.png",
+    # "login_logo": "https://ideal-interior-nepal.s3.ap-south-1.amazonaws.com/logos/logo-with-text-removebg-preview.png",
+    "welcome_sign": "Welcome to Ideal Interior",
+    "copyright": "Ideal Interior",
+    "topmenu_links": [
+        {"app": "website"},
+    ],
+    "show_sidebar": True,
+    "show_ui_builder": True,
+}
