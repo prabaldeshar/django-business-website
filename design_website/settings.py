@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from django.templatetags.static import static
+
 from dotenv import load_dotenv
 import os
 
@@ -34,7 +36,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
+    'unfold',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -173,16 +175,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 #jazzmine settings
-JAZZMIN_SETTINGS = {
-    "site_title": "Ideal Interior Admin",
-    "site_brand": "Ideal Interior",
-    # "site_logo": "https://ideal-interior-nepal.s3.ap-south-1.amazonaws.com/logos/ideal-logo.png",
-    # "login_logo": "https://ideal-interior-nepal.s3.ap-south-1.amazonaws.com/logos/logo-with-text-removebg-preview.png",
-    "welcome_sign": "Welcome to Ideal Interior",
-    "copyright": "Ideal Interior",
-    "topmenu_links": [
-        {"app": "website"},
-    ],
-    "show_sidebar": True,
-    "show_ui_builder": True,
+UNFOLD = {
+    "SITE_TITLE": "Ideal Interior Admin",
+    "SITE_HEADER": "Ideal Interior",
 }
