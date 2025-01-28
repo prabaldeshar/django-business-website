@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: django_app
+    ports:
+      - "8001:8001"
+    volumes:
+      - .:/app
+      - ./db.sqlite3:/app/db.sqlite3
+    environment:
+      - DEBUG=0
+    env_file:
+      - .env
+    command: gunicorn --bind 0.0.0.0:8001 --workers 3 design_website.wsgi:application
+  

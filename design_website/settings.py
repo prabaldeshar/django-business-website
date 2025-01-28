@@ -11,10 +11,15 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from django.templatetags.static import static
+
+from dotenv import load_dotenv
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -25,18 +30,20 @@ SECRET_KEY = 'django-insecure-1oucpznb#r296q-1fq(gu_apu-4hx%8j*0^y9am(nfvdwcgw7p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'unfold',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'website',
 ]
 
@@ -78,9 +85,43 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        # Optional settings (rarely needed):
+        'TIMEOUT': 20,          # Default is 5 seconds
+        'OPTIONS': {
+            'timeout': 30,      # Connection timeout in seconds
+        }
+    }
+    # "default": {
+    #     "ENGINE": "django.db.backends.postgresql",
+    #     "NAME": os.environ.get("POSTGRES_DB", default="ideal-interior"),
+    #     "USER": os.environ.get("POSTGRES_USER"),
+    #     "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
+    #     "HOST": os.environ.get("POSTGRES_HOST", "127.0.0.1"),
+    #     "PORT": os.environ.get("POSTGRES_PORT", "5432"),
+    # }
+}
+
+# S3 Configuration
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+            "bucket_name": os.environ.get("AWS_STORAGE_BUCKET_NAME")
+        },
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     }
 }
 
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME")
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_VERIFY = True
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -126,3 +167,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Define STATIC_ROOT
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Existing settings
+STATIC_URL = '/static/'
+
+#jazzmine settings
+UNFOLD = {
+    "SITE_TITLE": "Ideal Interior Admin",
+    "SITE_HEADER": "Ideal Interior",
+}
