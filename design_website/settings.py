@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-1oucpznb#r296q-1fq(gu_apu-4hx%8j*0^y9am(nfvdwcgw7p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -165,6 +165,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Define STATIC_ROOT
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Existing settings
+STATIC_URL = '/static/'
 
 #jazzmine settings
 JAZZMIN_SETTINGS = {
