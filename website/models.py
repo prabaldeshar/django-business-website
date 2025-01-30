@@ -51,7 +51,7 @@ class Project(BaseModel):
             return Project.objects.get(id=project_id)
         except Project.DoesNotExist:
             return None
-        
+
     @classmethod
     def get_all_projects(cls):
         return Project.objects.all().order_by("-created_at")
@@ -70,3 +70,14 @@ class ProjectImage(BaseModel):
         ],
     )
     description = models.TextField(null=True, blank=True)
+
+
+class ContactUser(BaseModel):
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=128)
+    phone = models.CharField(max_length=20)
+    subject = models.CharField(max_length=100)
+    message = models.TextField()
+
+    def __str__(self):
+        return f"{self.name}"

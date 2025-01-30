@@ -4,8 +4,12 @@ from rest_framework.response import Response
 
 from helpers.logging_helper import logger
 
-from .models import Project, ProjectImage
-from .serializers import ProjectImageSerializer, ProjectSerializer
+from .models import Project, ContactUser
+from .serializers import (
+    ProjectImageSerializer,
+    ProjectSerializer,
+    ContactUserSerializer,
+)
 
 
 @api_view(["GET"])
@@ -41,8 +45,18 @@ def project_images(request, project_id):
 
     return Response(response)
 
+
 @api_view(["POST"])
 def contact_user(request):
     logger.info("Input contact data")
-    print(request.data)
-    return Response({})
+    logger.info(request.data)
+
+    serializer = ContactUserSerializer(data=request.data)
+    if not serializer.is_valid():
+        logger.error(f"Invalid data: {serializer.errors}")
+        return Response(serializer.errors, status=400)
+
+    serializer.save()
+    logger.info("Contact data saved successfully")
+
+    return Response({"message": "Contact data saved successfully"}, status=200)
