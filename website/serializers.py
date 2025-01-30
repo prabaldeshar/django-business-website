@@ -1,13 +1,36 @@
 from rest_framework import serializers
 
-from website.models import Project, ProjectImage
+from website.models import Project, ProjectImage, ContactUser
+
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ['id', 'title', 'description', 'client_name', 'location', 'project_type', 'completed_date', 'cover_image']
+        fields = [
+            "id",
+            "title",
+            "client_name",
+            "location",
+            "project_type",
+            "completed_date",
+            "cover_image",
+        ]
+
 
 class ProjectImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProjectImage
-        fields = ['id', 'image', 'description',]
+        fields = [
+            "id",
+            "image",
+            "description",
+        ]
+
+
+class ContactUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContactUser
+        fields = "__all__"
+
+    email = serializers.EmailField()
+    phone = serializers.CharField(max_length=10)

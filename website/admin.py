@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from unfold.admin import ModelAdmin, TabularInline
 
-from .models import Project, ProjectImage
+from .models import Project, ProjectImage, ContactUser
 
 
 class ProjectImageInline(TabularInline):
@@ -46,3 +46,9 @@ class ProjectAdmin(ModelAdmin):
         return "No Image"
 
     image_preview.short_description = "Cover Image"
+
+
+@admin.register(ContactUser)
+class ContactUserAmdin(ModelAdmin):
+    list_display = ["name", "email", "phone", "subject", "message"]
+    exclude = ("deleted_at", "is_deleted")
