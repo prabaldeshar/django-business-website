@@ -8,7 +8,7 @@ from .serializers import ProjectSerializer, ProjectImageSerializer
 
 @api_view(["GET"])
 def projects(request):
-    projects = Project.objects.all()
+    projects = Project.get_all_projects()
     serilized_projects = ProjectSerializer(projects, many=True).data
     response = {"projects": serilized_projects}
     return Response(response)
