@@ -40,3 +40,9 @@ def project_images(request, project_id):
     logger.info(f"Response project_images: {response}")
 
     return Response(response)
+
+@api_view(["POST"])
+def contact_user(request):
+    logger.info("Input contact data")
+    print(request.data)
+    return Response({})
