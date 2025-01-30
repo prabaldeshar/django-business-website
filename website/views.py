@@ -4,7 +4,7 @@ from rest_framework.response import Response
 
 from helpers.logging_helper import logger
 
-from .models import Project, ContactUser
+from .models import Project
 from .serializers import (
     ProjectImageSerializer,
     ProjectSerializer,
