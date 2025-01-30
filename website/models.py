@@ -55,6 +55,10 @@ class Project(BaseModel):
     @classmethod
     def get_all_projects(cls):
         return Project.objects.all().order_by("-created_at")
+    
+    @classmethod
+    def get_project_by_type(cls, project_type):
+        return Project.objects.filter(project_type=project_type).order_by("-created_at")
 
 
 class ProjectImage(BaseModel):

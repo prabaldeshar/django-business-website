@@ -15,7 +15,15 @@ from .serializers import (
 @api_view(["GET"])
 def projects(request):
     logger.info("Getting all projects...")
-    projects = Project.get_all_projects()
+    # Get query params from request
+    logger.info(f"Query params: {request.query_params}")
+    project_type = request.query_params.get("type", None)
+
+    if project_type in [Project.PROJECT_TYPE_COMMERCIAL, Project.PROJECT_TYPE_RESIDENTIAL]:
+        projects = Project.get_project_by_type(project_type)
+    else:
+        projects = Project.get_all_projects()
+    
     serilized_projects = ProjectSerializer(projects, many=True).data
     response = {"projects": serilized_projects}
     logger.info(f"Response projects: {response}")
