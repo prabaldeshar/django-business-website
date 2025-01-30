@@ -51,6 +51,10 @@ class Project(BaseModel):
             return Project.objects.get(id=project_id)
         except Project.DoesNotExist:
             return None
+        
+    @classmethod
+    def get_all_projects(cls):
+        return Project.objects.all().order_by("-created_at")
 
 
 class ProjectImage(BaseModel):
