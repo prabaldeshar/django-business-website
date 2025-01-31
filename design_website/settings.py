@@ -64,9 +64,15 @@ MIDDLEWARE = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-WEB_URL = os.environ.get("WEB_URL", default="http://localhost:3000")
-WEB_IP = os.environ.get("WEB_IP", None)
-CSRF_TRUSTED_ORIGINS = [WEB_URL, WEB_IP]
+# Enforce HTTPS in session and CSRF cookies
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# Trust reverse proxy headers (if using Nginx/Apache)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow the site to be framed by the following domains
+CSRF_TRUSTED_ORIGINS = ['https://13.235.181.35']
 
 ROOT_URLCONF = 'design_website.urls'
 
