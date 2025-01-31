@@ -28,7 +28,7 @@ load_dotenv()
 SECRET_KEY = 'django-insecure-1oucpznb#r296q-1fq(gu_apu-4hx%8j*0^y9am(nfvdwcgw7p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", default=False)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -63,6 +63,10 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+WEB_URL = os.environ.get("WEB_URL", default="http://localhost:3000")
+WEB_IP = os.environ.get("WEB_IP", None)
+CSRF_TRUSTED_ORIGINS = [WEB_URL, WEB_IP]
 
 ROOT_URLCONF = 'design_website.urls'
 
