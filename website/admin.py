@@ -26,7 +26,7 @@ class ProjectImageInline(TabularInline):
 
 @admin.register(Project)
 class ProjectAdmin(ModelAdmin):
-    list_display = ["title", "description", "client_name", "location", "image_preview"]
+    list_display = ["title", "client_name", "location", "image_preview"]
     list_filter = ["project_type"]
     search_fields = ["title", "description", "client_name", "location"]
     exclude = ("deleted_at", "is_deleted")
