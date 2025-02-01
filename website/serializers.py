@@ -12,6 +12,7 @@ class ProjectSerializer(serializers.ModelSerializer):
             "client_name",
             "location",
             "project_type",
+            "description",
             "completed_date",
             "cover_image",
         ]
