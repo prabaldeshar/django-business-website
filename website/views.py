@@ -79,7 +79,7 @@ def get_homepage_slides(request):
     """Retrieve up to three homepage slide images."""
     logger.info("Fetching homepage slides...")
     
-    slides = HomepageSlide.objects.all()[:3]  # Limit to 3 slides
+    slides = HomepageSlide.objects.filter(is_visible=True).order_by('-created_at')[:5]  # Only fetch visible slides
     serialized_slides = HomepageSlideSerializer(slides, many=True).data
 
     response = {"image_details": serialized_slides}

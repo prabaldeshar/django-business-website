@@ -54,6 +54,6 @@ class ContactUserAmdin(ModelAdmin):
     exclude = ("deleted_at", "is_deleted")
 
 @admin.register(HomepageSlide)
-class HomepageSlideAdmin(admin.ModelAdmin):
+class HomepageSlideAdmin(ModelAdmin):
     list_display = ('id', 'title', 'image', 'uploaded_at')  # Columns in the admin panel
     ordering = ['-uploaded_at']  # Order by latest uploaded
