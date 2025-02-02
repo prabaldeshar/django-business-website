@@ -81,10 +81,10 @@ def get_homepage_slides(request):
     no_of_slides = request.query_params.get('no_of_slides',None)
 
     if no_of_slides:
-        slides = HomepageSlide.objects.filter(is_visible=True).order_by('-created_at')[:int(no_of_slides)]
+        slides = HomepageSlide.objects.filter(is_visible=True).order_by('-uploaded_at')[:int(no_of_slides)]
     
     else:
-        slides = HomepageSlide.objects.filter(is_visible=True).order_by('-created_at')
+        slides = HomepageSlide.objects.filter(is_visible=True).order_by('-uploaded_at')
     
     serialized_slides = HomepageSlideSerializer(slides, many=True).data
 
