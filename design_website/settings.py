@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'storages',
     'website',
+    
 ]
 
 MIDDLEWARE = [
@@ -97,9 +99,7 @@ WSGI_APPLICATION = 'design_website.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
 DATABASES = {
-
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": os.environ.get("POSTGRES_DB", default="ideal-interior"),
@@ -191,3 +191,4 @@ UNFOLD = {
     "SITE_TITLE": "Ideal Interior Admin",
     "SITE_HEADER": "Ideal Interior",
 }
+

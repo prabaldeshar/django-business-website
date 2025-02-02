@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from unfold.admin import ModelAdmin, TabularInline
 
-from .models import Project, ProjectImage, ContactUser
+from .models import Project, ProjectImage, ContactUser, HomepageSlide
 
 
 class ProjectImageInline(TabularInline):
@@ -52,3 +52,26 @@ class ProjectAdmin(ModelAdmin):
 class ContactUserAmdin(ModelAdmin):
     list_display = ["name", "email", "phone", "subject", "message"]
     exclude = ("deleted_at", "is_deleted")
+
+
+@admin.register(HomepageSlide)
+class HomepageSlideAdmin(ModelAdmin):
+    list_display = (
+        "title",
+        "image_preview",
+        "uploaded_at",
+    )  # Columns in the admin panel
+    ordering = ["-uploaded_at"]  # Order by latest uploaded
+
+    def image_preview(self, obj: HomepageSlide):
+        if obj.image:
+            return format_html(
+                '<a href="{}" target="_blank">'
+                '<img src="{}" style="max-height: 50px; max-width: 200px; cursor: pointer;"/>'
+                "</a>",
+                obj.image.url,  # Full-size image link
+                obj.image.url,  # Thumbnail souxrce
+            )
+        return "No Image"
+
+    image_preview.short_description = "Cover Image"
