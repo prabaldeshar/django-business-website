@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
-from website.models import Project, ProjectImage, ContactUser
-
+from website.models import Project, ProjectImage, ContactUser, HomepageSlide
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,3 +33,8 @@ class ContactUserSerializer(serializers.ModelSerializer):
 
     email = serializers.EmailField()
     phone = serializers.CharField(max_length=10)
+
+class HomepageSlideSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HomepageSlide
+        fields = ['id', 'title', 'image', 'uploaded_at']

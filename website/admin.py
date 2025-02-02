@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from unfold.admin import ModelAdmin, TabularInline
 
-from .models import Project, ProjectImage, ContactUser
+from .models import Project, ProjectImage, ContactUser, HomepageSlide
 
 
 class ProjectImageInline(TabularInline):
@@ -52,3 +52,8 @@ class ProjectAdmin(ModelAdmin):
 class ContactUserAmdin(ModelAdmin):
     list_display = ["name", "email", "phone", "subject", "message"]
     exclude = ("deleted_at", "is_deleted")
+
+@admin.register(HomepageSlide)
+class HomepageSlideAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'image', 'uploaded_at')  # Columns in the admin panel
+    ordering = ['-uploaded_at']  # Order by latest uploaded

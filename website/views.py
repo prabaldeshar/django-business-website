@@ -1,14 +1,18 @@
 from django.shortcuts import render
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, parser_classes
+from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 
 from helpers.logging_helper import logger
 
-from .models import Project
+from .models import Project, HomepageSlide
 from .serializers import (
     ProjectImageSerializer,
     ProjectSerializer,
     ContactUserSerializer,
+    HomepageSlideSerializer,
+    
+    
 )
 
 
@@ -68,3 +72,51 @@ def contact_user(request):
     logger.info("Contact data saved successfully")
 
     return Response({"message": "Contact data saved successfully"}, status=200)
+
+
+@api_view(["GET"])
+def get_homepage_slides(request):
+    """Retrieve up to three homepage slide images."""
+    logger.info("Fetching homepage slides...")
+    
+    slides = HomepageSlide.objects.all()[:3]  # Limit to 3 slides
+    serialized_slides = HomepageSlideSerializer(slides, many=True).data
+
+    response = {"image_details": serialized_slides}
+    logger.info(f"Response: {response}")
+    
+    return Response(response)
+
+
+@api_view(["POST"])
+@parser_classes([MultiPartParser, FormParser])
+def upload_homepage_slide(request):
+    """Upload a new homepage slide image. Only three images allowed."""
+    logger.info("Uploading new homepage slide...")
+
+    # Check if there are already 3 slides
+    if HomepageSlide.objects.count() >= 3:
+        return Response({"error": "You can only have 3 slide images."}, status=400)
+
+    serializer = HomepageSlideSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+
+    logger.error(f"Upload failed: {serializer.errors}")
+    return Response(serializer.errors, status=400)
+
+
+@api_view(["DELETE"])
+def delete_homepage_slide(request, image_id):
+    """Delete a homepage slide image."""
+    logger.info(f"Deleting homepage slide with ID: {image_id}")
+
+    slide = HomepageSlide.objects.filter(id=image_id).first()
+
+    if not slide:
+        logger.error(f"Slide with ID {image_id} does not exist")
+        return Response({"error": "Slide not found"}, status=404)
+
+    slide.delete()
+    return Response({"message": "Slide deleted successfully"}, status=204)

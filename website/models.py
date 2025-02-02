@@ -85,3 +85,12 @@ class ContactUser(BaseModel):
 
     def __str__(self):
         return f"{self.name}"
+
+
+class HomepageSlide(models.Model):
+    title = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='homepage_slides/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
