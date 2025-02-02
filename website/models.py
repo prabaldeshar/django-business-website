@@ -55,7 +55,7 @@ class Project(BaseModel):
     @classmethod
     def get_all_projects(cls):
         return Project.objects.all().order_by("-created_at")
-    
+
     @classmethod
     def get_project_by_type(cls, project_type):
         return Project.objects.filter(project_type=project_type).order_by("-created_at")
@@ -89,9 +89,9 @@ class ContactUser(BaseModel):
 
 class HomepageSlide(models.Model):
     title = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='homepage_slides/')
+    image = models.ImageField(upload_to="homepage_slides/")
     uploaded_at = models.DateTimeField(auto_now_add=True)
-    is_visible = models.BooleanField(default=True)  
+    is_visible = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
