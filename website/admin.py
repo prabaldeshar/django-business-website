@@ -50,7 +50,7 @@ class ProjectAdmin(ModelAdmin):
 
 @admin.register(ContactUser)
 class ContactUserAmdin(ModelAdmin):
-    list_display = ["name", "email", "phone", "subject", "message"]
+    list_display = ["name", "email", "phone", "subject", "message", "created_at"]
     exclude = ("deleted_at", "is_deleted")
 
 
