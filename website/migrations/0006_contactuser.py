@@ -4,28 +4,38 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('website', '0005_alter_project_cover_image_alter_project_project_type_and_more'),
+        (
+            "website",
+            "0005_alter_project_cover_image_alter_project_project_type_and_more",
+        ),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ContactUser',
+            name="ContactUser",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('deleted_at', models.DateTimeField(blank=True, null=True)),
-                ('is_deleted', models.BooleanField(default=False)),
-                ('name', models.CharField(max_length=100)),
-                ('email', models.CharField(max_length=128)),
-                ('phone', models.CharField(max_length=20)),
-                ('subject', models.CharField(max_length=100)),
-                ('message', models.TextField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("deleted_at", models.DateTimeField(blank=True, null=True)),
+                ("is_deleted", models.BooleanField(default=False)),
+                ("name", models.CharField(max_length=100)),
+                ("email", models.CharField(max_length=128)),
+                ("phone", models.CharField(max_length=20)),
+                ("subject", models.CharField(max_length=100)),
+                ("message", models.TextField()),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

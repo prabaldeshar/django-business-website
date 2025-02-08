@@ -4,15 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('website', '0002_project_cover_image'),
+        ("website", "0002_project_cover_image"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='project',
-            name='project_type',
-            field=models.CharField(choices=[('RESIDENTIAL', 'RESIDENTIAL'), ('COMMERCIAL', 'COMMERCIAL')], default='COMMERCIAL', max_length=20),
+            model_name="project",
+            name="project_type",
+            field=models.CharField(
+                choices=[("RESIDENTIAL", "RESIDENTIAL"), ("COMMERCIAL", "COMMERCIAL")],
+                default="COMMERCIAL",
+                max_length=20,
+            ),
         ),
     ]

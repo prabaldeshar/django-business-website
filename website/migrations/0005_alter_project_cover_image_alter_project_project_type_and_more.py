@@ -6,30 +6,53 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('website', '0004_projectimage'),
+        ("website", "0004_projectimage"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='project',
-            name='cover_image',
-            field=models.FileField(blank=True, null=True, upload_to='projects/images/', validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['jpeg', 'jpg', 'png'])]),
+            model_name="project",
+            name="cover_image",
+            field=models.FileField(
+                blank=True,
+                null=True,
+                upload_to="projects/images/",
+                validators=[
+                    django.core.validators.FileExtensionValidator(
+                        allowed_extensions=["jpeg", "jpg", "png"]
+                    )
+                ],
+            ),
         ),
         migrations.AlterField(
-            model_name='project',
-            name='project_type',
-            field=models.CharField(choices=[('Residential', 'Residential'), ('Commercial', 'Commercial')], default='Commercial', max_length=20),
+            model_name="project",
+            name="project_type",
+            field=models.CharField(
+                choices=[("Residential", "Residential"), ("Commercial", "Commercial")],
+                default="Commercial",
+                max_length=20,
+            ),
         ),
         migrations.AlterField(
-            model_name='projectimage',
-            name='image',
-            field=models.FileField(blank=True, null=True, upload_to='projects/images/', validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['jpeg', 'jpg', 'png'])]),
+            model_name="projectimage",
+            name="image",
+            field=models.FileField(
+                blank=True,
+                null=True,
+                upload_to="projects/images/",
+                validators=[
+                    django.core.validators.FileExtensionValidator(
+                        allowed_extensions=["jpeg", "jpg", "png"]
+                    )
+                ],
+            ),
         ),
         migrations.AlterField(
-            model_name='projectimage',
-            name='project',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='website.project'),
+            model_name="projectimage",
+            name="project",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="website.project"
+            ),
         ),
     ]

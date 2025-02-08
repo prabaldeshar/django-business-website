@@ -133,6 +133,8 @@ AWS_DEFAULT_ACL = 'public-read'
 AWS_S3_VERIFY = True
 AWS_QUERYSTRING_AUTH = False  # Disables query parameter authentication (pre-signed URLs)
 
+# Recaptcha
+RECAPTCHA_SECRET_KEY = os.environ.get("RECAPTCHA_SECRET_KEY")
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
