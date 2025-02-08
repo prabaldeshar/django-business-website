@@ -4,13 +4,12 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('website', '0007_homepageimage'),
+        ("website", "0007_homepageimage"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='HomepageImage',
+            name="HomepageImage",
         ),
     ]

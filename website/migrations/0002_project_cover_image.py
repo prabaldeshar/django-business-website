@@ -5,15 +5,23 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('website', '0001_initial'),
+        ("website", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='project',
-            name='cover_image',
-            field=models.FileField(blank=True, null=True, upload_to='projects/images/', validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['jpeg', 'jpg', 'png', 'pdf'])]),
+            model_name="project",
+            name="cover_image",
+            field=models.FileField(
+                blank=True,
+                null=True,
+                upload_to="projects/images/",
+                validators=[
+                    django.core.validators.FileExtensionValidator(
+                        allowed_extensions=["jpeg", "jpg", "png", "pdf"]
+                    )
+                ],
+            ),
         ),
     ]

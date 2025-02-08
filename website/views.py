@@ -13,6 +13,8 @@ from .serializers import (
     HomepageSlideSerializer,
 )
 
+from .utils.recaptcha import verify_recaptcha
+
 
 @api_view(["GET"])
 def projects(request):
@@ -63,6 +65,11 @@ def project_images(request, project_id):
 def contact_user(request):
     logger.info("Input contact data")
     logger.info(request.data)
+    recaptcha_response = request.data.get("recaptchaValue")
+
+    if not verify_recaptcha(recaptcha_response):
+        logger.error("Recaptcha verification failed")
+        return Response({"error": "Recaptcha verification failed"}, status=400)
 
     serializer = ContactUserSerializer(data=request.data)
     if not serializer.is_valid():
