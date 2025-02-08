@@ -129,8 +129,9 @@ AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
 AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME")
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
+AWS_DEFAULT_ACL = 'public-read'
 AWS_S3_VERIFY = True
+AWS_QUERYSTRING_AUTH = False  # Disables query parameter authentication (pre-signed URLs)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
