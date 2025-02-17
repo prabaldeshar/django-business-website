@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -14,7 +14,7 @@
   <body>
       <div mt-3 mb-3 mr-2 ml-2>
     <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light m-4">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light m-0 py-0">
         <a class="navbar-brand" href="#">Logo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -55,8 +55,108 @@
           </div>
         </div>
       </div>
-
     </div>
+
+
+
+    
+    <!-- Our-Services -->
+    <!-- Service 7 - Bootstrap Brain Component -->
+    <<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Website Layout</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #121212;
+                color: #ffffff;
+            }
+    
+            .container {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+                padding: 40px;
+                background-image: url('background.jpg'); /* Replace 'background.jpg' with your image path */
+                background-size: cover;
+                background-position: center;
+            }
+    
+            .card {
+                background-color: rgba(30, 30, 30, 0.8);
+                padding: 20px;
+                border-radius: 10px;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            }
+    
+            .card h2 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+                color: #f5c518;
+            }
+    
+            .card p {
+                font-size: 1rem;
+                line-height: 1.5;
+                margin-bottom: 20px;
+            }
+    
+            .card a {
+                text-decoration: none;
+                color: #f5c518;
+                font-weight: bold;
+            }
+    
+            .icon {
+                font-size: 2rem;
+                margin-bottom: 15px;
+                color: #f5c518;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="card">
+                <div class="icon">🏠</div>
+                <h2>Architecture</h2>
+                <p>Designing enduring, innovative spaces that harmonize function and aesthetics with a focus on sustainability and client collaboration.</p>
+                <a href="#">Read More</a>
+            </div>
+    
+            <div class="card">
+                <div class="icon">🛋️</div>
+                <h2>Interior Design</h2>
+                <p>Crafting captivating interiors that blend beauty and functionality, tailored to individual styles for spaces that evoke comfort and elegance.</p>
+                <a href="#">Read More</a>
+            </div>
+    
+            <div class="card">
+                <div class="icon">🛠️</div>
+                <h2>Construction and Supervision</h2>
+                <p>Elevating spaces with curated or custom-designed furniture and decor elements, transforming environments into harmonious and captivating settings.</p>
+                <a href="#">Read More</a>
+            </div>
+    
+            <div class="card">
+                <div class="icon">🪑</div>
+                <h2>Furniture and Decor</h2>
+                <p>Elevate spaces with personalized touches. Our services offer curated selections or custom-designed furniture and decor, enhancing ambiance and functionality.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+    </body>
+    </html>
+    
+
+     
+      
+  
 
     <!-- Project List -->
     <section class="py-5 bg-light" id="projects">
@@ -90,124 +190,89 @@
             <!-- Card -->
             </div>
         </div>
-        </section>
+        
+
+
+</section>
 
     <!-- Footer -->
-    <footer class="bg-body-tertiary text-center mt-4">
+    <footer class="bg-body-tertiary text-left mt-4 bg-dark">
 
-        <div class="container p-4">
+        <div class="container p-4 text-light">
             <section class="mb-4">
             
-            </section>
-
-            <section class="">
-            <form action="">
-                <div class="row d-flex justify-content-center">
-                <div class="col-auto">
-                    <p class="pt-2">
-                    <strong>Sign up for our newsletter</strong>
-                    </p>
-                </div>
-
-                <div class="col-md-5 col-12">
-                    <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="email" id="form5Example24" class="form-control" />
-                    <label class="form-label" htmlFor="form5Example24">Email address</label>
-                    </div>
-                </div>
-
-                <div class="col-auto">
-                    <button data-mdb-ripple-init type="submit" class="btn btn-outline mb-4">
-                    Subscribe
-                    </button>
-                </div>
-                </div>
-            </form>
-            </section>
-
+            
             <section class="mb-4">
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
-                repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam eum
-                harum corrupti dicta, aliquam sequi voluptate quas.
-            </p>
+           
             </section>
 
             <section class="">
             <div class="row">
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Links</h5>
+                <h5 class="text-capitalized">Logo</h5>
+
+                
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-capitalized ">Additional Links</h5>
 
                 <ul class="list-unstyled mb-0">
                     <li>
-                    <a class="text-body" href="#!">Link 1</a>
+                    <a class="text-light text-decoration-none" href="#!">Blog</a>
                     </li>
                     <li>
-                    <a class="text-body" href="#!">Link 2</a>
+                    <a class="text-light text-decoration-none" href="#!">Our Services</a>
                     </li>
                     <li>
-                    <a class="text-body" href="#!">Link 3</a>
+                    <a class="text-light text-decoration-none" href="#!">Privacy Policy</a>
                     </li>
                     <li>
-                    <a class="text-body" href="#!">Link 4</a>
+                    <a class="text-light text-decoration-none" href="#!">Terms and Conditions</a>
+                    </li>
+                    <li>
+                    <a class="text-light text-decoration-none" href="#!">Interior Designing and Planning</a>
                     </li>
                 </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Links</h5>
+                <h5 class="text-capitalized">Contact Information</h5>
 
                 <ul class="list-unstyled mb-0">
+                  
                     <li>
-                    <a class="text-body" href="#!">Link 1</a>
+                    <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                    <a class="text-light text-decoration-none" href="#!">Location</a>
                     </li>
                     <li>
-                    <a class="text-body" href="#!">Link 2</a>
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <a class="text-light text-decoration-none" href="#!">Phone</a>
                     </li>
                     <li>
-                    <a class="text-body" href="#!">Link 3</a>
+                    <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+                    <a class="text-light text-decoration-none" href="#!">Telephone</a>
                     </li>
                     <li>
-                    <a class="text-body" href="#!">Link 4</a>
+                      <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <a class="text-light text-decoration-none" href="#!">gmail</a>
                     </li>
                 </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Links</h5>
+                <h5 class="text-capitalized">Connect With Us</h5>
 
                 <ul class="list-unstyled mb-0">
-                    <li>
-                    <a class="text-body" href="#!">Link 1</a>
-                    </li>
-                    <li>
-                    <a class="text-body" href="#!">Link 2</a>
-                    </li>
-                    <li>
-                    <a class="text-body" href="#!">Link 3</a>
-                    </li>
-                    <li>
-                    <a class="text-body" href="#!">Link 4</a>
-                    </li>
-                </ul>
-                </div>
-
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Links</h5>
-
-                <ul class="list-unstyled mb-0">
-                    <li>
-                    <a class="text-body" href="#!">Link 1</a>
-                    </li>
-                    <li>
-                    <a class="text-body" href="#!">Link 2</a>
-                    </li>
-                    <li>
-                    <a class="text-body" href="#!">Link 3</a>
-                    </li>
-                    <li>
-                    <a class="text-body" href="#!">Link 4</a>
-                    </li>
+                  <!-- Facebook -->
+                  <i class="fab fa-facebook-f"></i>
+                  <!-- Instagram -->
+                  <i class="fab fa-instagram"></i>
+                  <!-- Youtube -->
+                  <i class="fab fa-youtube"></i>
+                  <!-- Whatsapp -->
+                  <i class="fab fa-whatsapp"></i>
+                    
                 </ul>
                 </div>
             </div>
