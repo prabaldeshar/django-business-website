@@ -5,12 +5,13 @@ from rest_framework.response import Response
 
 from helpers.logging_helper import logger
 
-from .models import Project, HomepageSlide
+from .models import Project, HomepageSlide, Service, AboutUs
 from .serializers import (
     ProjectImageSerializer,
     ProjectSerializer,
     ContactUserSerializer,
     HomepageSlideSerializer,
+    ServiceSerializer
 )
 
 from .utils.recaptcha import verify_recaptcha
@@ -103,6 +104,16 @@ def get_homepage_slides(request):
 
     return Response(response)
 
+@api_view(["GET"])
+def get_services(request):
+    logger.info("Fetching all services...")
+    services = Service.objects.filter(is_visible=True).order_by("-title")
+
+    serialized_services = ServiceSerializer(services, many=True).data
+    response = {"services": serialized_services}
+    logger.info(f"Response: {response}")
+
+    return Response(response)
 
 @api_view(["POST"])
 @parser_classes([MultiPartParser, FormParser])

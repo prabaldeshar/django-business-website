@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import date
 import django.core.validators
+from django.core.exceptions import ValidationError
 
 
 # Create your models here.
@@ -101,6 +102,7 @@ class Service(BaseModel):
     title = models.CharField(max_length=200)
     description = models.TextField()
     image = models.ImageField(upload_to="services/")
+    is_visible = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
@@ -125,3 +127,46 @@ class AboutUsPoint(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ContactInfo(models.Model):
+    phone = models.CharField(max_length=20, help_text="Contact phone number")
+    email = models.EmailField(help_text="Contact email address", null=True, blank=True)
+    facebook = models.URLField(blank=True, null=True, help_text="Facebook page URL")
+    instagram = models.URLField(
+        blank=True, null=True, help_text="Instagram profile URL"
+    )
+
+    class Meta:
+        verbose_name = "Contact Information"
+        verbose_name_plural = "Contact Information"
+
+    def clean(self):
+        # Prevent multiple instances
+        if not self.pk and ContactInfo.objects.exists():
+            raise ValidationError(
+                "Contact information already exists. You can only edit the existing entry."
+            )
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        # Ensure only one instance exists
+        if not self.pk and ContactInfo.objects.exists():
+            raise ValidationError("Only one ContactInfo instance is allowed.")
+        super().save(*args, **kwargs)
+
+    def get_contact_info(cls):
+        """Get the single contact info instance, create if doesn't exist"""
+        contact_info, created = cls.objects.get_or_create(
+            pk=1,
+            defaults={
+                "phone": "",
+                "email": "",
+                "facebook": "",
+                "instagram": "",
+            },
+        )
+        return contact_info
+
+    def __str__(self):
+        return f"Contact Info - {self.email}"

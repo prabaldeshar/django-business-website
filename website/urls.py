@@ -7,6 +7,7 @@ from .views import (
     get_homepage_slides,
     upload_homepage_slide,
     delete_homepage_slide,
+    get_services,
 )
 
 
@@ -15,6 +16,7 @@ urlpatterns = [
     path("project/images/<str:project_id>/", project_images, name="Project Images"),
     path("contact/user/", contact_user, name="Contact User"),
     path("homepage-slides/", get_homepage_slides, name="homepage-slides"),
+    path("services/", get_services, name="services"),
     path(
         "homepage-slides/upload/", upload_homepage_slide, name="upload-homepage-slide"
     ),

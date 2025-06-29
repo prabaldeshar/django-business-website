@@ -1,6 +1,13 @@
 from rest_framework import serializers
 
-from website.models import Project, ProjectImage, ContactUser, HomepageSlide
+from website.models import (
+    Project,
+    ProjectImage,
+    ContactUser,
+    HomepageSlide,
+    Service,
+    AboutUs,
+)
 
 
 class ProjectSerializer(serializers.ModelSerializer):
@@ -41,3 +48,9 @@ class HomepageSlideSerializer(serializers.ModelSerializer):
     class Meta:
         model = HomepageSlide
         fields = ["id", "title", "image", "uploaded_at"]
+
+
+class ServiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Service
+        fields = ["title", "description", "image"]

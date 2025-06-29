@@ -10,6 +10,7 @@ from .models import (
     Service,
     AboutUs,
     AboutUsPoint,
+    ContactInfo,
 )
 
 
@@ -138,3 +139,19 @@ class AboutUsAdmin(ModelAdmin):
         return "No Image"
 
     image_preview.short_description = "Cover Image"
+
+
+@admin.register(ContactInfo)
+class ContactInfoAdmin(ModelAdmin):
+    list_display = (
+        "email",
+        "phone",
+    )
+
+    def has_add_permission(self, request):
+        # Prevent adding new instances if one already exists
+        return not ContactInfo.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
+        # Prevent deletion to ensure contact info always exists
+        return False
