@@ -4,19 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('website', '0011_aboutus_service_aboutuspoint'),
+        ("website", "0011_aboutus_service_aboutuspoint"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='aboutus',
-            options={'verbose_name': 'About Us', 'verbose_name_plural': 'About Us'},
+            name="aboutus",
+            options={"verbose_name": "About Us", "verbose_name_plural": "About Us"},
         ),
         migrations.AddField(
-            model_name='service',
-            name='is_visible',
+            model_name="service",
+            name="is_visible",
             field=models.BooleanField(default=True),
         ),
     ]

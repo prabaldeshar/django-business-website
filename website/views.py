@@ -5,13 +5,15 @@ from rest_framework.response import Response
 
 from helpers.logging_helper import logger
 
-from .models import Project, HomepageSlide, Service, AboutUs
+from .models import Project, HomepageSlide, Service, AboutUs, ContactInfo
 from .serializers import (
+    AboutUsSerializer,
     ProjectImageSerializer,
     ProjectSerializer,
     ContactUserSerializer,
     HomepageSlideSerializer,
-    ServiceSerializer
+    ServiceSerializer,
+    ContactInfoSerializer,
 )
 
 from .utils.recaptcha import verify_recaptcha
@@ -104,16 +106,21 @@ def get_homepage_slides(request):
 
     return Response(response)
 
+
 @api_view(["GET"])
 def get_services(request):
     logger.info("Fetching all services...")
-    services = Service.objects.filter(is_visible=True).order_by("-title")
+    services = Service.objects.filter(is_visible=True).order_by("title")
 
     serialized_services = ServiceSerializer(services, many=True).data
+    for index, item in enumerate(serialized_services):
+        item["reverse"] = bool(index % 2)
+
     response = {"services": serialized_services}
     logger.info(f"Response: {response}")
 
     return Response(response)
+
 
 @api_view(["POST"])
 @parser_classes([MultiPartParser, FormParser])
@@ -147,3 +154,24 @@ def delete_homepage_slide(request, image_id):
 
     slide.delete()
     return Response({"message": "Slide deleted successfully"}, status=204)
+
+
+@api_view(["GET"])
+def get_about_us(request):
+    try:
+        about_us = AboutUs.objects.prefetch_related("points").first()
+        if not about_us:
+            return Response({"message": "About Us content not available."}, status=404)
+
+        serialized = AboutUsSerializer(about_us).data
+        return Response(serialized)
+    except Exception as e:
+        logger.error(f"Error fetching About Us: {str(e)}")
+        return Response({"error": "Something went wrong."}, status=500)
+
+
+@api_view(["GET"])
+def get_contact_information(request):
+    contact_info = ContactInfo.get_contact_info()
+    serialized = ContactInfoSerializer(contact_info).data
+    return Response(serialized)

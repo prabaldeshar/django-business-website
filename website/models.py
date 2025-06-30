@@ -113,6 +113,20 @@ class AboutUs(BaseModel):
     description = models.TextField()
     image = models.ImageField(upload_to="points/")
 
+    def clean(self):
+        # Prevent multiple instances
+        if not self.pk and ContactInfo.objects.exists():
+            raise ValidationError(
+                "AboutUS already exists. You can only edit the existing entry."
+            )
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        # Ensure only one instance exists
+        if not self.pk and ContactInfo.objects.exists():
+            raise ValidationError("Only one AboutUs instance is allowed.")
+        super().save(*args, **kwargs)
+
     class Meta:
         verbose_name = "About Us"
         verbose_name_plural = "About Us"
@@ -155,6 +169,7 @@ class ContactInfo(models.Model):
             raise ValidationError("Only one ContactInfo instance is allowed.")
         super().save(*args, **kwargs)
 
+    @classmethod
     def get_contact_info(cls):
         """Get the single contact info instance, create if doesn't exist"""
         contact_info, created = cls.objects.get_or_create(
