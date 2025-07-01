@@ -183,5 +183,7 @@ def homepage_images(request):
     grouped = {}
     for section, _ in HomepageImage.SECTION_CHOICES:
         images = HomepageImage.objects.filter(section=section)
-        grouped[section] = HomepageImageSerializer(images, many=True, context={"request": request}).data
+        grouped[section] = HomepageImageSerializer(
+            images, many=True, context={"request": request}
+        ).data
     return Response(grouped)

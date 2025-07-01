@@ -4,16 +4,17 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('website', '0013_contactinfo'),
+        ("website", "0013_contactinfo"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='contactinfo',
-            name='address',
-            field=models.CharField(default='Lalitpur, Nepal', help_text='Current Address', max_length=200),
+            model_name="contactinfo",
+            name="address",
+            field=models.CharField(
+                default="Lalitpur, Nepal", help_text="Current Address", max_length=200
+            ),
             preserve_default=False,
         ),
     ]

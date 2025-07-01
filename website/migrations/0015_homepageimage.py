@@ -4,26 +4,43 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('website', '0014_contactinfo_address'),
+        ("website", "0014_contactinfo_address"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='HomepageImage',
+            name="HomepageImage",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('deleted_at', models.DateTimeField(blank=True, null=True)),
-                ('is_deleted', models.BooleanField(default=False)),
-                ('section', models.CharField(choices=[('about_us', 'About Us'), ('services', 'Services'), ('projects', 'Projects')], max_length=20)),
-                ('image', models.ImageField(upload_to='homepage/')),
-                ('title', models.CharField(blank=True, max_length=255, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("deleted_at", models.DateTimeField(blank=True, null=True)),
+                ("is_deleted", models.BooleanField(default=False)),
+                (
+                    "section",
+                    models.CharField(
+                        choices=[
+                            ("about_us", "About Us"),
+                            ("services", "Services"),
+                            ("projects", "Projects"),
+                        ],
+                        max_length=20,
+                    ),
+                ),
+                ("image", models.ImageField(upload_to="homepage/")),
+                ("title", models.CharField(blank=True, max_length=255, null=True)),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]
