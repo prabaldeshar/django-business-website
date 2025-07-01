@@ -5,9 +5,10 @@ from rest_framework.response import Response
 
 from helpers.logging_helper import logger
 
-from .models import Project, HomepageSlide, Service, AboutUs, ContactInfo
+from .models import HomepageImage, Project, HomepageSlide, Service, AboutUs, ContactInfo
 from .serializers import (
     AboutUsSerializer,
+    HomepageImageSerializer,
     ProjectImageSerializer,
     ProjectSerializer,
     ContactUserSerializer,
@@ -175,3 +176,12 @@ def get_contact_information(request):
     contact_info = ContactInfo.get_contact_info()
     serialized = ContactInfoSerializer(contact_info).data
     return Response(serialized)
+
+
+@api_view(["GET"])
+def homepage_images(request):
+    grouped = {}
+    for section, _ in HomepageImage.SECTION_CHOICES:
+        images = HomepageImage.objects.filter(section=section)
+        grouped[section] = HomepageImageSerializer(images, many=True, context={"request": request}).data
+    return Response(grouped)

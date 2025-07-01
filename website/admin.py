@@ -11,6 +11,7 @@ from .models import (
     AboutUs,
     AboutUsPoint,
     ContactInfo,
+    HomepageImage,
 )
 
 
@@ -143,10 +144,7 @@ class AboutUsAdmin(ModelAdmin):
 
 @admin.register(ContactInfo)
 class ContactInfoAdmin(ModelAdmin):
-    list_display = (
-        "email",
-        "phone",
-    )
+    list_display = ("email", "phone", "address")
 
     def has_add_permission(self, request):
         # Prevent adding new instances if one already exists
@@ -155,3 +153,22 @@ class ContactInfoAdmin(ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         # Prevent deletion to ensure contact info always exists
         return False
+
+
+@admin.register(HomepageImage)
+class HomePageImageAdmin(ModelAdmin):
+    list_display = ("section", "image_preview")
+    list_filter = ("section",)
+
+    def image_preview(self, obj):
+        if obj.image:
+            return format_html(
+                '<a href="{}" target="_blank">'
+                '<img src="{}" style="max-height: 50px; max-width: 200px; cursor: pointer;"/>'
+                "</a>",
+                obj.image.url,
+                obj.image.url,
+            )
+        return "No Image"
+
+    image_preview.short_description = "Preview"

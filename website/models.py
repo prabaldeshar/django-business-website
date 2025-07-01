@@ -146,6 +146,7 @@ class AboutUsPoint(models.Model):
 class ContactInfo(models.Model):
     phone = models.CharField(max_length=20, help_text="Contact phone number")
     email = models.EmailField(help_text="Contact email address", null=True, blank=True)
+    address = models.CharField(max_length=200, help_text="Current Address")
     facebook = models.URLField(blank=True, null=True, help_text="Facebook page URL")
     instagram = models.URLField(
         blank=True, null=True, help_text="Instagram profile URL"
@@ -185,3 +186,39 @@ class ContactInfo(models.Model):
 
     def __str__(self):
         return f"Contact Info - {self.email}"
+
+
+class HomepageImage(BaseModel):
+    SECTION_CHOICES = [
+        ("about_us", "About Us"),
+        ("services", "Services"),
+        ("projects", "Projects"),
+    ]
+
+    section = models.CharField(max_length=20, choices=SECTION_CHOICES)
+    image = models.ImageField(upload_to="homepage/")
+    title = models.CharField(max_length=255, blank=True, null=True)
+
+    def clean(self):
+        # Restrict number of images per section
+        max_images = {
+            "about_us": 1,
+            "services": 1,
+            "projects": 3,
+        }
+        current_count = (
+            HomepageImage.objects.filter(section=self.section)
+            .exclude(pk=self.pk)
+            .count()
+        )
+        if current_count >= max_images.get(self.section, 0):
+            raise ValidationError(
+                f"Only {max_images[self.section]} image(s) allowed for {self.section.replace('_', ' ').title()} section."
+            )
+
+    def save(self, *args, **kwargs):
+        self.full_clean()  # Call clean() before saving
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.section.title()} - {self.title or self.image.name}"

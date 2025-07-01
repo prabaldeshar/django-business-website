@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from website.models import (
     AboutUsPoint,
+    HomepageImage,
     Project,
     ProjectImage,
     ContactUser,
@@ -96,3 +97,9 @@ class ContactInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContactInfo
         fields = "__all__"
+
+
+class HomepageImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HomepageImage
+        fields = ["id", "section", "image", "title"]
