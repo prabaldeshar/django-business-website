@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import date
 import django.core.validators
+from django.core.exceptions import ValidationError
 
 
 # Create your models here.
@@ -95,3 +96,129 @@ class HomepageSlide(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Service(BaseModel):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    image = models.ImageField(upload_to="services/")
+    is_visible = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title
+
+
+class AboutUs(BaseModel):
+    heading = models.CharField(max_length=200)
+    description = models.TextField()
+    image = models.ImageField(upload_to="points/")
+
+    def clean(self):
+        # Prevent multiple instances
+        if not self.pk and ContactInfo.objects.exists():
+            raise ValidationError(
+                "AboutUS already exists. You can only edit the existing entry."
+            )
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        # Ensure only one instance exists
+        if not self.pk and ContactInfo.objects.exists():
+            raise ValidationError("Only one AboutUs instance is allowed.")
+        super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "About Us"
+        verbose_name_plural = "About Us"
+
+
+class AboutUsPoint(models.Model):
+    about_us = models.ForeignKey(
+        AboutUs, related_name="points", on_delete=models.CASCADE
+    )
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+
+class ContactInfo(models.Model):
+    phone = models.CharField(max_length=20, help_text="Contact phone number")
+    email = models.EmailField(help_text="Contact email address", null=True, blank=True)
+    address = models.CharField(max_length=200, help_text="Current Address")
+    facebook = models.URLField(blank=True, null=True, help_text="Facebook page URL")
+    instagram = models.URLField(
+        blank=True, null=True, help_text="Instagram profile URL"
+    )
+
+    class Meta:
+        verbose_name = "Contact Information"
+        verbose_name_plural = "Contact Information"
+
+    def clean(self):
+        # Prevent multiple instances
+        if not self.pk and ContactInfo.objects.exists():
+            raise ValidationError(
+                "Contact information already exists. You can only edit the existing entry."
+            )
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        # Ensure only one instance exists
+        if not self.pk and ContactInfo.objects.exists():
+            raise ValidationError("Only one ContactInfo instance is allowed.")
+        super().save(*args, **kwargs)
+
+    @classmethod
+    def get_contact_info(cls):
+        """Get the single contact info instance, create if doesn't exist"""
+        contact_info, created = cls.objects.get_or_create(
+            pk=1,
+            defaults={
+                "phone": "",
+                "email": "",
+                "facebook": "",
+                "instagram": "",
+            },
+        )
+        return contact_info
+
+    def __str__(self):
+        return f"Contact Info - {self.email}"
+
+
+class HomepageImage(BaseModel):
+    SECTION_CHOICES = [
+        ("about_us", "About Us"),
+        ("services", "Services"),
+        ("projects", "Projects"),
+    ]
+
+    section = models.CharField(max_length=20, choices=SECTION_CHOICES)
+    image = models.ImageField(upload_to="homepage/")
+    title = models.CharField(max_length=255, blank=True, null=True)
+
+    def clean(self):
+        # Restrict number of images per section
+        max_images = {
+            "about_us": 1,
+            "services": 1,
+            "projects": 3,
+        }
+        current_count = (
+            HomepageImage.objects.filter(section=self.section)
+            .exclude(pk=self.pk)
+            .count()
+        )
+        if current_count >= max_images.get(self.section, 0):
+            raise ValidationError(
+                f"Only {max_images[self.section]} image(s) allowed for {self.section.replace('_', ' ').title()} section."
+            )
+
+    def save(self, *args, **kwargs):
+        self.full_clean()  # Call clean() before saving
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.section.title()} - {self.title or self.image.name}"
