@@ -58,6 +58,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -65,16 +66,13 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "idealinterior.com.np",
-    "13.235.181.35",
-    "localhost",
-    "127.0.0.1",
-    "admin.idealinterior.com.np",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://admin.idealinterior.com.np",
+    "https://idealinterior.com.np",
 ]
 
 # Enforce HTTPS in session and CSRF cookies
@@ -86,11 +84,10 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Allow the site to be framed by the following domains
 CSRF_TRUSTED_ORIGINS = [
-    "idealinterior.com.np",
-    "13.235.181.35",
-    "localhost",
-    "127.0.0.1",
-    "admin.idealinterior.com.np",
+    "https://admin.idealinterior.com.np",
+    "https://idealinterior.com.np",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
 
 ROOT_URLCONF = "design_website.urls"
