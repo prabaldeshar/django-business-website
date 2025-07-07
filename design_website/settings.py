@@ -30,7 +30,13 @@ SECRET_KEY = "django-insecure-1oucpznb#r296q-1fq(gu_apu-4hx%8j*0^y9am(nfvdwcgw7p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", default=False)
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "idealinterior.com.np",
+    "13.235.181.35",
+    "localhost",
+    "127.0.0.1",
+    "admin.idealinterior.com.np",
+]
 
 
 # Application definition
@@ -63,7 +69,13 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "idealinterior.com.np",
+    "13.235.181.35",
+    "localhost",
+    "127.0.0.1",
+    "admin.idealinterior.com.np",
+]
 
 # Enforce HTTPS in session and CSRF cookies
 SESSION_COOKIE_SECURE = True
@@ -73,7 +85,13 @@ CSRF_COOKIE_SECURE = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Allow the site to be framed by the following domains
-CSRF_TRUSTED_ORIGINS = ["https://13.235.181.35"]
+CSRF_TRUSTED_ORIGINS = [
+    "idealinterior.com.np",
+    "13.235.181.35",
+    "localhost",
+    "127.0.0.1",
+    "admin.idealinterior.com.np",
+]
 
 ROOT_URLCONF = "design_website.urls"
 
