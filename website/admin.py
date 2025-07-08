@@ -128,19 +128,6 @@ class AboutUsAdmin(ModelAdmin):
         AboutUsPointInline,
     ]
 
-    def image_preview(self, obj: Project):
-        if obj.cover_image:
-            return format_html(
-                '<a href="{}" target="_blank">'
-                '<img src="{}" style="max-height: 50px; max-width: 200px; cursor: pointer;"/>'
-                "</a>",
-                obj.image.url,  # Full-size image link
-                obj.image.url,  # Thumbnail souxrce
-            )
-        return "No Image"
-
-    image_preview.short_description = "Cover Image"
-
 
 @admin.register(ContactInfo)
 class ContactInfoAdmin(ModelAdmin):

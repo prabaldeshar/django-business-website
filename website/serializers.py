@@ -79,18 +79,11 @@ class AboutUsPointSerializer(serializers.ModelSerializer):
 
 
 class AboutUsSerializer(serializers.ModelSerializer):
-    image = serializers.SerializerMethodField()
     points = AboutUsPointSerializer(many=True)
 
     class Meta:
         model = AboutUs
-        fields = ["heading", "description", "image", "points"]
-
-    def get_image(self, obj):
-        return {
-            "src": obj.image.url if obj.image else "",
-            "alt": obj.heading,
-        }
+        fields = ["heading", "description", "points"]
 
 
 class ContactInfoSerializer(serializers.ModelSerializer):

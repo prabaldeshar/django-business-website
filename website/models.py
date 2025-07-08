@@ -111,11 +111,10 @@ class Service(BaseModel):
 class AboutUs(BaseModel):
     heading = models.CharField(max_length=200)
     description = models.TextField()
-    image = models.ImageField(upload_to="points/")
 
     def clean(self):
         # Prevent multiple instances
-        if not self.pk and ContactInfo.objects.exists():
+        if not self.pk and AboutUs.objects.exists():
             raise ValidationError(
                 "AboutUS already exists. You can only edit the existing entry."
             )
